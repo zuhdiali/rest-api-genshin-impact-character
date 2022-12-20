@@ -34,7 +34,7 @@ class Auth implements FilterInterface
                             ->setJSON(['msg' => 'Token Required'])
                             ->setStatusCode(ResponseInterface::HTTP_UNAUTHORIZED);
         $token = explode(' ', $header)[1];
- 
+
         try {
             JWT::decode($token,new Key($key, 'HS256'));
         } catch (\Throwable $th) {
