@@ -71,6 +71,11 @@ class Me extends ResourceController
         } else {
             $rule_email = 'required|is_unique[users.email]';
         }
+        if ($data['username'] == $this->request->getVar('username')) {
+            $rule_username= 'required';
+        } else {
+            $rule_username = 'required|is_unique[users.username]';
+        }
         if (!empty($data)) {
             helper(['form']);
             $rules = [
@@ -88,7 +93,13 @@ class Me extends ResourceController
                         'is_unique' => 'Email is already used'
                     ]
                 ],
-                'username' => 'required',
+                'username' => [
+                    'rules' => $rule_username,
+                    'errors' => [
+                        'required' => 'Username is required',
+                        'is_unique' => 'Username is already used'
+                    ]
+                ],
                 'password_lama' => [
                     'rules' => 'required|min_length[6]',
                     'errors' => [

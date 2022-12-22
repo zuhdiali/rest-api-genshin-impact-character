@@ -351,18 +351,18 @@ class Karakter extends BaseController
             unlink('img/avatar/' . $data['avatar_img']);
             $file_avatar->move('img/avatar');
             if ($file_card) {
-                $nama_file_card = $file_card->getName();
                 unlink('img/card/' . $data['card_img']);
                 $file_card->move('img/card');
+                $nama_file_card = $file_card->getName();
             } else {
                 $nama_file_card = $data['card_img'];
             }
         } else {
             $nama_file_avatar = $data['avatar_img'];
             if ($file_card) {
-                $nama_file_card = $file_card->getName();
                 unlink('img/card/' . $data['card_img']);
                 $file_card->move('img/card');
+                $nama_file_card = $file_card->getName();
             } else {
                 $nama_file_card = $data['card_img'];
             }
